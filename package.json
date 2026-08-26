@@ -1,0 +1,24 @@
+{
+  "name": "auth-template",
+  "version": "1.0.0",
+  "description": "Minimal Express + Passport (local) + PostgreSQL session auth boilerplate",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "watch": "node --watch --env-file=.env app.js",
+    "seed": "node db/populatedb.js",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "connect-pg-simple": "^10.0.0",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.23.0"
+  }
+}
