@@ -21,11 +21,13 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  
   next();
 });
 
-app.use("/", require("./routes/indexRouter"));
-app.use("/sign-up", require("./routes/newRouter"));
+app.use("/", require("./routes/logInRouter"));
+app.use("/sign-up", require("./routes/signUpRouter"));
+app.use("/messages", require("./routes/messageRouter"));
 
 // error handling middleware
 app.use((err, req, res, next) => {

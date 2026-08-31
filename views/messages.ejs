@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log In</title>
+  <link rel="stylesheet" href="/messages.css">
+</head>
+<body>
+    <div class="inhalt">
+    <%- include("navbar")%>
+    <div class="messageShow">
+        <% messages.forEach((element) => { %>
+            <div><%=element.title%></div>
+            <div><%=element.text%> </div>
+            <div><%=element.timestamp%></div>
+            <div><%=element.author_id%></div>
+
+        <%})%>
+    </div>
+</div>
+
+</body>
+</html>

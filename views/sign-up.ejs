@@ -8,10 +8,21 @@
 <body>
   <h1>Sign Up</h1>
   <form action="/sign-up" method="POST">
+    <label for="firstName">First Name</label>
+    <input id="firstName" name="firstName" placeholder="First Name" type="text" required>
+
+    <label for="lastName">Last Name</label>
+    <input id="lastName" name="lastName" placeholder="Last Name" type="text" required>
+
     <label for="username">Username</label>
     <input id="username" name="username" placeholder="username" type="text" required>
+
     <label for="password">Password</label>
     <input id="password" name="password" type="password" required>
+
+    <label for="confirmPassword">Confirm Password</label>
+    <input id="confirmPassword" name="confirmPassword" type="password" required>
+
     <button type="submit">Sign Up</button>
   </form>
   <a href="/">Back to log in</a>

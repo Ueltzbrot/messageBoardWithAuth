@@ -1,10 +1,14 @@
 const pool = require("./pool");
 
-async function createUser(username, password) {
-  await pool.query("INSERT INTO users (username, password) VALUES ($1, $2)", [
+async function createUser(username, password, firstName, lastName) {
+  await pool.query("INSERT INTO users (username, password, first_name, last_name) VALUES ($1, $2, $3, $4)", [
     username,
     password,
+    firstName,
+    lastName,
   ]);
+
+  console.log(pool.query("Select * from users"))
 }
 
 async function getUserByUsername(username) {
@@ -17,8 +21,16 @@ async function getUserById(id) {
   return rows[0];
 }
 
+
+async function getMessages(){
+  const {rows} = await pool.query("Select * from messages");
+  console.log(rows);
+  return rows;
+}
+
 module.exports = {
   createUser,
   getUserByUsername,
   getUserById,
+  getMessages,
 };

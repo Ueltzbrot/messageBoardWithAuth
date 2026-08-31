@@ -1,20 +1,20 @@
 const { Router } = require("express");
 const passport = require("passport");
-const indexRouter = Router();
-const { getIndex } = require("../controllers/indexController");
+const logInRouter = Router();
+const { getLogin } = require("../controllers/logInController");
 
-indexRouter.get("/", getIndex);
+logInRouter.get("/", getLogin);
 
-indexRouter.post(
+logInRouter.post(
   "/",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/messages",
     failureRedirect: "/",
     failureMessage: true,
   })
 );
 
-indexRouter.get("/log-out", (req, res, next) => {
+logInRouter.get("/log-out", (req, res, next) => {
   req.logout((err) => {
     if (err) {
       return next(err);
@@ -23,4 +23,4 @@ indexRouter.get("/log-out", (req, res, next) => {
   });
 });
 
-module.exports = indexRouter;
+module.exports = logInRouter;
