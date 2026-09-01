@@ -7,17 +7,44 @@
 </head>
 <body>
     <div class="inhalt">
+        <div class="leftSide">
     <%- include("navbar")%>
+    <% if (currentUser) { %>
+            <button class="makeFormVisible" onClick="toggleForm()">Post</button>
+    <% } %>
+        </div>
     <div class="messageShow">
         <% messages.forEach((element) => { %>
-            <div><%=element.title%></div>
-            <div><%=element.text%> </div>
-            <div><%=element.timestamp%></div>
-            <div><%=element.author_id%></div>
-
+            <div class="message">
+                <div class="messageTitle"><%=element.title%></div>
+                <div class="messageText"><%=element.text%> </div>
+                <div class="messageTime">
+                      Vor: <%=element.timeAgo%>
+                </div>
+                <div class="messageAuthor"><%=element.author_id%></div>
+            </div>
         <%})%>
     </div>
 </div>
 
+<div id="formOverlay" class="form-overlay hidden" onclick="toggleForm()"></div>
+
+<div id="postForm" class="form-container hidden">
+    <form action="/messages" method="post">
+         <label for="title">Put in your Title:</label>
+        <input id="title" name="title"></input>
+        <label for="textInput">What do you want to say?</label>
+        <textarea id="textInput" name="textInput"></textarea>
+        <button type="submit" class="post-button" onclick="toggleForm()">Post</button>
+    </form>
+</div>
+
+<script>
+function toggleForm(){
+  document.getElementById("postForm").classList.toggle('hidden');
+  document.getElementById("formOverlay").classList.toggle('hidden');
+}
+  
+</script>
 </body>
 </html>

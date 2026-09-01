@@ -51,9 +51,17 @@
   --font-heading: 'PT Serif', Georgia, serif;
   --font-body: 'Inter', -apple-system, sans-serif;
 
-  /* optional auch Weights als Variable */
   --fw-regular: 400;
   --fw-bold: 700;
+
+
+    --color-side: #F3F2F2;
+  --color-text: #201F1D;
+  --color-text-grau: #7F7E7D;
+  --color-orange: #B68235;
+  --color-avatar: #FFF3E4;
+  --color-border: #D1D0D0;
+  --color-accent-hover-bg: #EAE1D6;
 }
 
 
@@ -63,11 +71,14 @@ html, body {
   font-weight: var(--fw-regular);
   width: 100%;
   height: 100%;
+  background-color: var(--color-side);
+  color: var(--color-text)
 }
 
 a{
     all: unset;
     cursor: pointer;
+
 }
 
 
@@ -75,23 +86,165 @@ a{
     display:grid;
     height: 100%;
     grid-template-columns: 1fr 3fr;
-    padding: 1rem;
+        margin-top: 2rem;
+  padding-top: 1rem;
 }
 
+.leftSide{
+  display:flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-left: 2rem;
+   width: 50%;
+   position: sticky;
+   top: 2rem;
+   align-self: flex-start;
+}
 nav{
     display: flex;
     flex-direction: column;
+    align-items:left;
     gap: 2rem;
-    align-items:left ;
+    
 }
 
 .nav-link{
     display:flex;
-    gap: 0.7rem;
+    gap: 2rem;
+
+}
+.nav-link.active{
+    color: var(--color-orange);
+}
+.nav-link:hover{
+   background-color: var(--color-accent-hover-bg);
 
 }
 
 .nav-icon{
     width: 1.5rem;
     height: 1.5rem;
+}
+.messageShow{
+  width: 50%;
+  border-right: 1px solid #D1D0D0;
+}
+
+.message{
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+border-bottom: 1px solid #D1D0D0;
+}
+
+.message:last-child{
+  border-bottom: none;
+}
+
+.post-button, .makeFormVisible {
+  font-family: var(--font-heading);
+  font-size: var(--fw-regular);
+  width:100%;
+  padding: 12px 0;
+  background: #F3F2F2;
+  border: 1px solid #B68235;
+  border-radius: 24px;
+  color: #B68235;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.post-button:hover, .makeFormVisible:hover {
+  background: #B68235;
+  color: #FFF3E4;
+}
+
+.post-button:active, .makeFormVisible:active {
+  background: #92682A;
+  border-color: #92682A;
+}
+
+.post-button:disabled, .makeFormVisible:disabled {
+  background: #F3F2F2;
+  border-color: #D1D0D0;
+  color: #D1D0D0;
+  cursor: not-allowed;
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background: #FFFFFF;
+  padding: 2rem;
+  padding-bottom: 1.5rem;
+  border-radius: 1rem;
+  width: 30rem;
+}
+
+.form-container label {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-regular);
+  font-size: 15px;
+  display: block;
+  color: #201F1D;
+  margin-bottom: 0.5rem;
+}
+
+.form-container input,
+.form-container textarea {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem;
+  border: 1px solid #D1D0D0;
+  border-radius: 8px;
+  color: #201F1D;
+  outline: none;
+  margin-bottom: 1.25rem;
+}
+
+.form-container textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+  border-color: #B68235;
+}
+
+.post-button {
+  width: 100%;
+  padding: 12px 0;
+  background: #F3F2F2;
+  border: 1px solid #B68235;
+  border-radius: 24px;
+  color: #B68235;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }

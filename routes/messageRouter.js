@@ -1,11 +1,10 @@
 const {Router} = require('express');
 const messageRouter = Router();
-
-const {getMessages} = require("../controllers/messageController")
+const {getMessages, newMessage} = require("../controllers/messageController")
 
 
 
 messageRouter.get("/", getMessages);
-
+messageRouter.post("/", newMessage);
 
 module.exports = messageRouter;

@@ -23,9 +23,15 @@ async function getUserById(id) {
 
 
 async function getMessages(){
-  const {rows} = await pool.query("Select * from messages");
+  const {rows} = await pool.query("Select * from messages order by timestamp desc");
   console.log(rows);
   return rows;
+}
+
+async function createMessage(title, textInput, id){
+  await pool.query("insert into messages(text, title, author_id) Values($1, $2, $3)", 
+    [textInput, title, id]
+  )
 }
 
 module.exports = {
@@ -33,4 +39,5 @@ module.exports = {
   getUserByUsername,
   getUserById,
   getMessages,
+  createMessage,
 };
