@@ -13,21 +13,46 @@
             <button class="makeFormVisible" onClick="toggleForm()">Post</button>
     <% } %>
         </div>
+        <div class="messageCon">
     <div class="messageShow">
         <% messages.forEach((element) => { %>
             <div class="message">
                 <div class="messageTitle"><%=element.title%></div>
                 <div class="messageText"><%=element.text%> </div>
-                <div class="messageTime">
+                <% if(currentUser.membership) { %>
+                      <div class="messageTime">
                       Vor: <%=element.timeAgo%>
                 </div>
                 <div class="messageAuthor"><%=element.author_id%></div>
+                <% } %>
+                <% if(currentUser.admin) { %>
+                 <form action="/messages/<%= element.id %>/deletePost" method="post" class="deleteForm">
+                    <button type="submit" class="post-button">Delete</button>
+                </form>
+                <% }%>
             </div>
+
         <%})%>
+        
+    </div>
+     <% if(!currentUser.membership) { %>
+    <div class="buttonAndForm">
+    <button class="member" onclick="toggleMemberForm()">Become a member!</button>
+    <form action="/passcode" method="post" class="memberForm hidden" id="memberForm">
+        <div class="memberFormInner">
+            <label for="secretCode">Put in the secret Code</label>
+            <input id="secretCode" name="secretCode">
+            <button type="submit" class="post-button" onclick="toggleMemberForm()">Are you right?</button>
+        </div>
+    </form>
+    </div>
+    <% } %>
     </div>
 </div>
 
-<div id="formOverlay" class="form-overlay hidden" onclick="toggleForm()"></div>
+
+
+<div id="formOverlay" class="form-overlay hidden" onclick="toggleMemberForm()"></div>
 
 <div id="postForm" class="form-container hidden">
     <form action="/messages" method="post">
@@ -44,7 +69,10 @@ function toggleForm(){
   document.getElementById("postForm").classList.toggle('hidden');
   document.getElementById("formOverlay").classList.toggle('hidden');
 }
-  
+
+function toggleMemberForm(){
+    document.getElementById("memberForm").classList.toggle('hidden');
+}
 </script>
 </body>
 </html>

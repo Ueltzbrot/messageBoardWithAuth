@@ -86,9 +86,10 @@ a{
     display:grid;
     height: 100%;
     grid-template-columns: 1fr 3fr;
-        margin-top: 2rem;
-  padding-top: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
 }
+
 
 .leftSide{
   display:flex;
@@ -125,9 +126,22 @@ nav{
     width: 1.5rem;
     height: 1.5rem;
 }
+
+.messageCon{
+  width: 100%;
+  display:flex;
+}
 .messageShow{
-  width: 50%;
+  width: 70%;
   border-right: 1px solid #D1D0D0;
+}
+
+.member{
+  height: fit-content;
+  width: fit-content;
+justify-self: center;
+flex-grow: 0;
+padding-left: 1rem;
 }
 
 .message{
@@ -143,7 +157,7 @@ border-bottom: 1px solid #D1D0D0;
   border-bottom: none;
 }
 
-.post-button, .makeFormVisible {
+.post-button, .makeFormVisible, .member {
   font-family: var(--font-heading);
   font-size: var(--fw-regular);
   width:100%;
@@ -158,22 +172,35 @@ border-bottom: 1px solid #D1D0D0;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.post-button:hover, .makeFormVisible:hover {
+.post-button:hover, .makeFormVisible:hover, .member:hover {
   background: #B68235;
   color: #FFF3E4;
 }
 
-.post-button:active, .makeFormVisible:active {
+.post-button:active, .makeFormVisible:active, .member:active {
   background: #92682A;
   border-color: #92682A;
 }
 
-.post-button:disabled, .makeFormVisible:disabled {
+.post-button:disabled, .makeFormVisible:disabled, .member:disabled {
   background: #F3F2F2;
   border-color: #D1D0D0;
   color: #D1D0D0;
   cursor: not-allowed;
 }
+.buttonAndForm{
+  display:flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  gap: 2rem;
+}
+
+.member {
+  width: fit-content;
+  padding: 6px 16px;
+}
+
+
 
 .form-overlay {
   position: fixed;
@@ -184,6 +211,7 @@ border-bottom: 1px solid #D1D0D0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
+
 
 .form-container {
   display: flex;
@@ -200,7 +228,7 @@ border-bottom: 1px solid #D1D0D0;
   width: 30rem;
 }
 
-.form-container label {
+.form-container label, .memberForm label {
   font-family: var(--font-heading);
   font-weight: var(--fw-regular);
   font-size: 15px;
@@ -210,7 +238,7 @@ border-bottom: 1px solid #D1D0D0;
 }
 
 .form-container input,
-.form-container textarea {
+.form-container textarea, .memberForm input {
   font-family: var(--font-heading);
   font-size: 14px;
   width: 100%;
@@ -229,7 +257,7 @@ border-bottom: 1px solid #D1D0D0;
 }
 
 .form-container input:focus,
-.form-container textarea:focus {
+.form-container textarea:focus, .memberForm input:focus {
   border-color: #B68235;
 }
 
@@ -247,4 +275,27 @@ border-bottom: 1px solid #D1D0D0;
 
 .hidden {
   display: none;
+  opacity:0;
+
+}
+
+.memberForm {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition: grid-template-rows 0.35s ease, opacity 0.3s ease;
+}
+
+.memberForm.hidden {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.memberFormInner {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }

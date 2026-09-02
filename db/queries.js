@@ -33,6 +33,14 @@ async function createMessage(title, textInput, id){
     [textInput, title, id]
   )
 }
+async function giveMemberStatus(id){
+  await pool.query("update users set membership = true where id= $1", [id])
+}
+
+async function deletePost(messageId){
+  await pool.query("delete from messages where id = $1", [messageId]);
+}
+
 
 module.exports = {
   createUser,
@@ -40,4 +48,6 @@ module.exports = {
   getUserById,
   getMessages,
   createMessage,
+  giveMemberStatus,
+  deletePost,
 };

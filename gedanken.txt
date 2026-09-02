@@ -1,0 +1,3 @@
+membership status
+Authenticated Middleware fehlt noch
+admin der löschen kann

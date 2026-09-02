@@ -26,6 +26,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", require("./routes/logInRouter"));
+app.use("/logout", require("./routes/logInRouter"));
 app.use("/sign-up", require("./routes/signUpRouter"));
 app.use("/messages", require("./routes/messageRouter"));
 

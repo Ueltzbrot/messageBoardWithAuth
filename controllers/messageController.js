@@ -17,7 +17,28 @@ async function newMessage(req,res){
     res.redirect("/messages")
 }
 
+
+async function checkPasscode(req, res){
+  const {secretCode} = req.body;
+  if(secretCode == process.env.MEMBERSECRET){
+    const{id} = req.user;
+    await db.giveMemberStatus(id);
+    res.redirect("/messages")
+  }
+  else{
+    res.redirect("/messages")
+  }
+}
+
+async function deletePost(req, res){
+  const messageId = req.params.id;
+  await db.deletePost(messageId);
+  res.redirect("/messages")
+}
+
 module.exports ={
     getMessages,
-    newMessage
+    newMessage,
+    checkPasscode,
+    deletePost,
 } 

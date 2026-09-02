@@ -14,7 +14,7 @@ logInRouter.post(
   })
 );
 
-logInRouter.get("/log-out", (req, res, next) => {
+logInRouter.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) {
       return next(err);
